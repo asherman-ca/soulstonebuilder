@@ -1,3 +1,4 @@
+import Nav from '@/components/nav/Nav'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
@@ -14,17 +15,18 @@ export default async function page() {
 	const { data: profile } = await supabase
 		.from('profiles')
 		.select('*')
-		.eq('id', sessionData?.session.user.id)
+		.eq('id', sessionData?.session?.user.id)
 
 	console.log(skills)
 	console.log(sessionData)
 	console.log(profile)
 
 	return (
-		<div>
+		<div className='flex flex-col w-full'>
+			<Nav />
 			{skills?.map((skill) => (
 				// <Image src={skills.image} alt='skill image' />
-				<img src={skill.image} alt='' />
+				<img src={skill.image} alt='' key={skill.id} />
 			))}
 		</div>
 	)

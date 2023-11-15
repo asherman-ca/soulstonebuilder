@@ -50,7 +50,9 @@ import { TextInput, Button } from '@mantine/core'
 // import { Button } from '@nextui-org/react'
 // import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { UserCircle2 } from 'lucide-react'
+import { Span } from 'next/dist/trace'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -148,6 +150,26 @@ export default function Login() {
 
 	return (
 		<div className='flex justify-center px-6 pt-32 md:px-0'>
+			<Link
+				href='/'
+				className='absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm'
+			>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					width='24'
+					height='24'
+					viewBox='0 0 24 24'
+					fill='none'
+					stroke='currentColor'
+					strokeWidth='2'
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					className='mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1'
+				>
+					<polyline points='15 18 9 12 15 6' />
+				</svg>{' '}
+				Back
+			</Link>
 			<div className='flex flex-col gap-8 rounded-md border-gray-300 p-8 md:border-1'>
 				<h1 className='text-2xl font-semibold text-blue-500'>
 					SoulstoneBuilder
@@ -169,6 +191,7 @@ export default function Login() {
 						})}
 						label='Email'
 						type='email'
+						placeholder='email@domain.com'
 						error={errors.email && errors.email.message}
 					/>
 					<TextInput
@@ -179,6 +202,7 @@ export default function Login() {
 								message: 'Password must be at least 8 characters',
 							},
 						})}
+						placeholder='password123'
 						label='Password'
 						type='password'
 						error={errors.password && errors.password.message}
@@ -209,15 +233,7 @@ export default function Login() {
 						onClick={handleGoogleSignIn}
 						className='flex-1'
 						variant='default'
-						leftSection={
-							<Image
-								src='/googleIcon.png'
-								alt='Google Icon'
-								width={48}
-								height={48}
-								className='h-5 w-5'
-							/>
-						}
+						leftSection={<div>google</div>}
 					>
 						<p>Sign in with Google</p>
 					</Button>
